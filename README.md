@@ -113,4 +113,9 @@ Dentro do terminal Ubuntu, execute os seguintes comandos:
 - ```sail artisan breeze:install react```
 - ```sail npm install```
 
+
+por último, altere o endereço localhost em ```public > hot ```. Apague os endereço e deixe apenas ````http://localhost:5173``, assim:
+![image](https://user-images.githubusercontent.com/90472705/205315996-ab193efa-5dc4-4254-8630-259adffeb881.png)
+
+
 para rodar o projeto basta executar ```sail npm run dev```
