@@ -46,6 +46,7 @@ Após isso, o projeto está pronto para ser configurado de forma padrão
 ### Agora inicia-se a configuração do InertiaJS para o uso do React. A documentação pode ser vista na [documentação oficial](https://inertiajs.com/server-side-setup).
 ![image](https://user-images.githubusercontent.com/90472705/205308969-50764d98-1821-403d-ac15-95f14f00bb73.png)
 
+### Lado do servidor
 Dentro do Ubuntu, no diretório do projeto, execute o comando de instalação das dependências
 ``composer require inertiajs/inertia-laravel``
 
@@ -73,3 +74,43 @@ ele deve ficar desta forma:
 entao, no terminal Ubuntu, execute os seguintes comandos: 
 - ```sail up -d```
 - ```sail php artisan inertia:middleware```
+
+Dentro do seu editor de códigos, visualize em ```App\Http\Kernel``` a parte ```web```. Então no final introduza a seguinte linha de código:
+```php
+\App\Http\Middleware\HandleInertiaRequests::class,
+```
+
+ele deve ficar desta forma:
+![image](https://user-images.githubusercontent.com/90472705/205311433-3500d011-7748-4aca-8724-f107ce6fe445.png)
+
+
+### Lado do cliente
+Execute o seguinte comando no terminal do Ubuntu:
+```
+npm install @inertiajs/inertia @inertiajs/inertia-vue3
+```
+
+Abra o editor de código e procure por ```resources > js > app.js```, e então (dentro do arquivo app) cole o seguinte trecho de código:
+```js
+import React from 'react'
+import { render } from 'react-dom'
+import { createInertiaApp } from '@inertiajs/inertia-react'
+
+createInertiaApp({
+  resolve: name => require(`./Pages/${name}`),
+  setup({ el, App, props }) {
+    render(<App {...props} />, el)
+  },
+})
+```
+
+seu código deve ficar desta forma:
+![image](https://user-images.githubusercontent.com/90472705/205312617-3a8ac9d5-2143-4082-bda1-0e233d17de6f.png)
+
+## <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"> Configurando o Breeze
+Dentro do terminal Ubuntu, execute os seguintes comandos:
+- ```sail composer require laravel\breeze --dev```
+- ```sail artisan breeze:install react```
+- ```sail npm install```
+
+para rodar o projeto basta executar ```sail npm run dev```
