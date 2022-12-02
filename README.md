@@ -30,3 +30,46 @@ Todo o processo e explicação da criação de um projeto Laravel pode ser visto
 - 4 - Entre no diretório: ``cd nomeseuprojeto``
 
 ## <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg"> Configuração do projeto Laravel
+### Instalando php 8.1 e a ext. Pode ser visto na [documentação oficial](https://whimsical.com/iniciar-novo-projeto-com-laravel-e-react-8ot7mgpn6YVubrt6tuU9UJ)
+![image](https://user-images.githubusercontent.com/90472705/205307898-b5b0edf5-0438-403a-9ab7-eb006c756e41.png)
+Abra o terminal do Ubuntu, e dentro da pasta do projeto execute os seguintes comandos:
+- ``sudo apt install software-properties-common``
+- ``sudo add-apt-repository ppa:ondrej/php``
+- ``sudo apt update``
+- ``sudo apt install php8.1``
+- ``sudo apt install php8.1-mbstring php8.1-xmlrpc php810-soap php8.1-gd php8.1-xml php8.1-cli php8.1-zip php8.1-bcmath php8.1-tokenizer php8.1-intl``
+- ``sudo apt install php8.1-sqlite3`` 
+
+Após isso, o projeto está pronto para ser configurado de forma padrão
+
+## <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"> Configuração o InertiaJS
+### Agora inicia-se a configuração do InertiaJS para o uso do React. A documentação pode ser vista na [documentação oficial](https://inertiajs.com/server-side-setup).
+![image](https://user-images.githubusercontent.com/90472705/205308969-50764d98-1821-403d-ac15-95f14f00bb73.png)
+
+Dentro do Ubuntu, no diretório do projeto, execute o comando de instalação das dependências
+``composer require inertiajs/inertia-laravel``
+
+Então abra o seu editor de código e em ```resources > views > welcome.blade.php``` altere o HTML para o seguite:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
+    <script src="{{ mix('/js/app.js') }}" defer></script>
+    @inertiaHead
+  </head>
+  <body>
+    @inertia
+  </body>
+</html>
+```
+
+ele deve ficar desta forma:
+![image](https://user-images.githubusercontent.com/90472705/205310395-81ec3dbe-3da5-41e5-8edc-f29fd24b7899.png)
+
+entao, no terminal Ubuntu, execute os seguintes comandos: 
+- ```sail up -d```
+- ```sail php artisan inertia:middleware```
