@@ -14,19 +14,20 @@ O download pode ser feito no [site](https://www.docker.com/products/docker-deskt
 ![image](https://user-images.githubusercontent.com/90472705/205301743-ab3f1965-a6f3-4150-b834-36afe477e2fa.png)
 
 ### Configuração do Docker
-É necessário habilitar o WSL Integration para o Ubuntu (Já instalado anteriormente)
+É necessário habilitar o WSL Integration para o Ubuntu (Já instalado anteriormente).
 ![image](https://user-images.githubusercontent.com/90472705/205302187-c9796598-e494-4a28-b5ff-2217fc3f0ed9.png)
 
 Para acessar opção basta acessar ``Configurações > Resources > WSL Integration`` e ativar as opções.
 ![image](https://user-images.githubusercontent.com/90472705/205303414-1606572c-6870-407e-bdd8-d509b54733a0.png)
 
+Obs.: Caso a instalação tenha sido feita, mas a opção não esteja aparecendo, verificar se a sua máquina está configurada para a utilização do WSL 2.
 ## <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg"> Criação de um projeto Laravel
 ### É necessário a inicialização do Ubuntu para criar o projeto Laravel
 Todo o processo e explicação da criação de um projeto Laravel pode ser visto na [documentação oficial](https://laravel.com/docs/9.x/installation), mas também será apresentado aqui.
 
 - 1 - Abra o terminal Ubuntu
 - 2 - Abra o diretório da sua preferência: ``cd nomediretorio``
-- 3 - Execute o seguinte comando: ``composer create-project laravel/laravel nomeseuprojeto`` 
+- 3 - Execute o seguinte comando: ``composer create-project laravel/laravel <nomeseuprojeto>`` 
 - 4 - Entre no diretório: ``cd nomeseuprojeto``
 
 ## <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg"> Configuração do projeto Laravel
@@ -106,6 +107,20 @@ createInertiaApp({
 
 seu código deve ficar desta forma:
 ![image](https://user-images.githubusercontent.com/90472705/205312617-3a8ac9d5-2143-4082-bda1-0e233d17de6f.png)
+
+Antes de seguir com a instalação, verifique qual meio será utilizado para a criação de arquivos durante a realização do projeto, se ele será utilizando containers do Docker, ou se será apenas utilizados instalações feitas em sua máquina sem a utilização dos containers.
+
+Caso seu projeto seja necessário a utilização de containers, será necessário a instalação do Sail no seu projeto, e ele pode ser feito pelo seguinte comando:
+``` 
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php81-composer:latest \
+    composer install --ignore-platform-reqs
+```
+
+Os comandos a seguir já utilizão o conceito de que foi instalado o Sail, no caso de não ter sido instalado, os comandos relacionados ao Artisan utilizarão o php no lugar do sail e não será utilizado o sail dos outros comandos.
 
 ## <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"> Configurando o Breeze
 Dentro do terminal Ubuntu, execute os seguintes comandos:
